@@ -1,86 +1,69 @@
-# Course Catalog API
+# Course Catalog API — Lab 5
 
-Standalone FastAPI backend for Lab 4 with a six-course catalog, Pydantic validation, filtering, sorting, and pagination through Depends.
+FastAPI backend for a six-course Next.js catalog, with filtering, sorting, pagination, likes and in-memory enrollment.
 
-## How to run on Windows
+## Run on Windows
 
-Python 3.10 or newer is required. Open PowerShell in this project folder:
+Requires Python 3.10+ and Pydantic 2.11+:
 
 ```powershell
+cd "C:\Users\user\Desktop\новый\course-catalog-api"
 python -m venv .venv
-.\.venv\Scripts\Activate.ps1
-python -m pip install -r requirements.txt
-fastapi dev main.py
-```
-
-If PowerShell blocks activation, use the environment directly without changing execution policy:
-
-```powershell
 .\.venv\Scripts\python.exe -m pip install -r requirements.txt
-.\.venv\Scripts\fastapi.exe dev main.py
+.\.venv\Scripts\fastapi.exe dev main.py --port 8000
 ```
 
-Open http://127.0.0.1:8000/docs and use **Try it out**, then **Execute**. Alternative documentation is at `/redoc`, and the OpenAPI schema is at `/openapi.json`. Stop the server with Ctrl+C. If port 8000 is occupied, add `--port 8001`.
+Activation is optional when using these direct executable paths. Open http://localhost:8000/docs, then start the frontend at **http://localhost:3000** in a second terminal. If the reload subprocess is blocked, use `fastapi dev main.py --no-reload --port 8000`. Use port 8000 to match the frontend environment; changing the port also requires updating both frontend API variables.
 
-## Project structure
+## What changed
 
-- `main.py`: three GET routes and the pagination dependency.
-- `models.py`: the Pydantic Course model.
-- `data.py`: six courses and lookup helpers.
-- `requirements.txt`: FastAPI with its standard dependencies.
-- `.gitignore`: excludes the virtual environment and Python cache files.
+`CORSMiddleware` permits the exact browser origin `http://localhost:3000`, with all methods and headers. Browser requests from the Next.js frontend need this permission because port 3000 and port 8000 are different origins. Server Component requests come from the Next.js server and are not subject to browser CORS. Foreign origins get no Access-Control-Allow-Origin response header; a simple request can still execute even if the browser cannot read its result.
 
-## What was verified
+`CamelModel` uses `alias_generator=to_camel`, `validate_by_name=True` and `validate_by_alias=True`. Python fields stay snake_case, JSON fields become camelCase, and either name is accepted when creating a model. `Course`, `EnrollmentIn` and `Enrollment` inherit this configuration. `validate_by_name` is necessary because `data.py` constructs electives with `is_elective=True`. Query parameters are independent: use `?is_elective=true`, not `?isElective=true`.
 
-The following requests were checked locally; the same requests can be repeated in Swagger UI.
+Three routes were added:
 
-| Request | Result |
+| Route | Successful result |
 | --- | --- |
-| `GET /` | 200; `{"message":"Course Catalog API is running"}` |
-| `GET /courses` | 200; ai-integration, modern-frontend, web-security, backend-fastapi, databases-postgresql, api-design |
-| `GET /courses/web-security` | 200; the Web Security Essentials course |
-| `GET /courses/nope` | 404; `{"detail":"Course not found"}` |
-| `GET /courses?is_elective=true` | 200; ai-integration, api-design |
-| `GET /courses?is_elective=false` | 200; modern-frontend, web-security, backend-fastapi, databases-postgresql |
-| `GET /courses?sort=title` | 200; ai-integration, api-design, backend-fastapi, modern-frontend, databases-postgresql, web-security |
-| `GET /courses?page=1&page_size=2` | 200; ai-integration, modern-frontend |
-| `GET /courses?page=2&page_size=2` | 200; web-security, backend-fastapi |
-| `GET /courses?page=3&page_size=2` | 200; databases-postgresql, api-design |
-| `GET /courses?page=4&page_size=2` | 200; `[]` |
-| `GET /courses?is_elective=false&sort=title&page=2&page_size=2` | 200; databases-postgresql, web-security |
-| `GET /courses?is_elective=true&page=2&page_size=1` | 200; api-design |
-| `GET /courses?page=0` | 422; page must be at least 1 |
-| `GET /courses?page_size=0` | 422; page_size must be at least 1 |
-| `GET /courses?page_size=1000` | 422; page_size must be at most 100 |
-| `GET /courses?page=abc` | 422; invalid integer |
-| `GET /courses?is_elective=banana` | 422; invalid boolean |
-| `GET /docs` | 200; Swagger UI |
-| `GET /redoc` | 200; ReDoc |
-| `GET /openapi.json` | 200; exactly three GET routes and the Course schema |
+| POST /courses/web-security/like | 200; `{"id":"web-security","title":"Web Security Essentials","description":"JWT/OAuth2, XSS, CSRF, and SQL injection defense.","credits":4,"isElective":false,"likes":22}` after the first like since restart |
+| POST /enrollments | 201; `{"courseId":"web-security","studentName":"Aigerim","id":1}` for the first enrollment |
+| GET /enrollments | 200; `[{"courseId":"web-security","studentName":"Aigerim","id":1}]` after the preceding POST |
 
-All course responses include `id`, `title`, `description`, `credits`, `is_elective`, and `likes`. The model defaults are `is_elective=False` and `likes=0`. Pydantic rejects `credits="five"` and converts `credits="5"` to integer 5.
+Enrollment request body:
 
-Filtering runs before sorting, and pagination runs last. Default sorting is by likes descending; `sort=title` sorts by title. Other sort values use popular sorting, as in the core assignment. The pagination bounds implement the optional Query validation task.
-
-The data matches the Lab 4 handout, including 24 likes for Modern Frontend. The older frontend copy had 9 likes for that course.
-
-## Submission
-
-The local Git repository contains separate commits for the environment, root route, model and data, course routes, filtering and sorting, pagination, and documentation. `.venv/` is ignored and is not committed.
-
-Create a GitHub repository named `course-catalog-api`, then replace `YOUR_USERNAME` below with your actual username:
-
-```powershell
-git remote add origin https://github.com/YOUR_USERNAME/course-catalog-api.git
-git push -u origin main
+```json
+{"courseId":"web-security","studentName":"Aigerim"}
 ```
 
-Submit the GitHub repository link as required by your instructor.
+The request must have `Content-Type: application/json`. A one-character `studentName` returns 422 with `detail[0].msg` equal to `String should have at least 2 characters`. Unknown course IDs return 404 with `{"detail":"Course not found"}` for both POST routes. The enrollment form deliberately displays backend validation instead of blocking short names in the browser.
 
-For an environment that blocks the Windows reload subprocess, disable automatic reload:
+Likes and enrollments are held in process memory: refreshing a page preserves them, but restarting FastAPI resets them. No database is required for this lab.
+
+## All six routes
+
+| Method | Path | Purpose |
+| --- | --- | --- |
+| GET | / | Running status |
+| GET | /courses | List, filter, sort, paginate |
+| GET | /courses/{course_id} | One course or 404 |
+| POST | /courses/{course_id}/like | Increment and return course |
+| POST | /enrollments | Validate and create enrollment |
+| GET | /enrollments | List current enrollments |
+
+`GET /courses` returns six courses, with ai-integration first. `?is_elective=true` returns ai-integration and api-design. `?isElective=true` is ignored and returns six. `?sort=title` sorts by title; default sorting is by likes descending. `?page=2&page_size=2` returns the second pair. Filtering precedes sorting, followed by pagination. Page must be >=1 and page_size must be between 1 and 100; invalid values return 422.
+
+## CORS checks
 
 ```powershell
-.\.venv\Scripts\fastapi.exe dev main.py --no-reload
+curl.exe -i -H "Origin: http://localhost:3000" http://localhost:8000/
+curl.exe -i -H "Origin: http://evil.example" http://localhost:8000/
+curl.exe -i -X OPTIONS http://localhost:8000/enrollments -H "Origin: http://localhost:3000" -H "Access-Control-Request-Method: POST" -H "Access-Control-Request-Headers: content-type"
 ```
 
-The running server was also checked over HTTP for the root response, page 2, Swagger UI, and the three-route OpenAPI schema. The server startup check used `--no-reload`; the default reload subprocess was blocked in the execution environment.
+The first response includes `Access-Control-Allow-Origin: http://localhost:3000`; the second has no such header. The OPTIONS response is 200 OK and allows POST and content-type. A like has no body or special headers and therefore has no preflight; enrollment JSON triggers one. The browser may cache successful preflight permission for 600 seconds; disable cache when reproducing it.
+
+## Verification and submission
+
+Verified on 15 October 2026: all six OpenAPI operations; camelCase; electives; sorting and pagination; allowed/foreign origin headers; preflight 200; two likes (22, 23); valid enrollment 201 and list; short name 422; unknown courses 404. Chrome browser checks also cover both frontend request paths, the filter, persisted likes, validation messages, loading, not-found and recovery with retry. The frontend README contains five reproduced breakages and actual browser console messages.
+
+Local Lab 5 commits separately cover CORS, camelCase models, POST routes and documentation. The configured remote is https://github.com/37423iitu/course-catalog-api. Push the local commits using your GitHub access before submitting; local changes have not been published automatically.
