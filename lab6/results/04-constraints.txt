@@ -1,0 +1,243 @@
+BEGIN
+CREATE TABLE
+CREATE FUNCTION
+ expect_error 
+--------------
+ 
+(1 row)
+
+ expect_error 
+--------------
+ 
+(1 row)
+
+ expect_error 
+--------------
+ 
+(1 row)
+
+ expect_error 
+--------------
+ 
+(1 row)
+
+ expect_error 
+--------------
+ 
+(1 row)
+
+ expect_error 
+--------------
+ 
+(1 row)
+
+ expect_error 
+--------------
+ 
+(1 row)
+
+ expect_error 
+--------------
+ 
+(1 row)
+
+ expect_error 
+--------------
+ 
+(1 row)
+
+ expect_error 
+--------------
+ 
+(1 row)
+
+ expect_error 
+--------------
+ 
+(1 row)
+
+ expect_error 
+--------------
+ 
+(1 row)
+
+ expect_error 
+--------------
+ 
+(1 row)
+
+ expect_error 
+--------------
+ 
+(1 row)
+
+ expect_error 
+--------------
+ 
+(1 row)
+
+ expect_error 
+--------------
+ 
+(1 row)
+
+ expect_error 
+--------------
+ 
+(1 row)
+
+ expect_error 
+--------------
+ 
+(1 row)
+
+ expect_error 
+--------------
+ 
+(1 row)
+
+ expect_error 
+--------------
+ 
+(1 row)
+
+ expect_error 
+--------------
+ 
+(1 row)
+
+ expect_error 
+--------------
+ 
+(1 row)
+
+ expect_error 
+--------------
+ 
+(1 row)
+
+ expect_error 
+--------------
+ 
+(1 row)
+
+ expect_error 
+--------------
+ 
+(1 row)
+
+ expect_error 
+--------------
+ 
+(1 row)
+
+ expect_error 
+--------------
+ 
+(1 row)
+
+ expect_error 
+--------------
+ 
+(1 row)
+
+ expect_error 
+--------------
+ 
+(1 row)
+
+ expect_error 
+--------------
+ 
+(1 row)
+
+ expect_error 
+--------------
+ 
+(1 row)
+
+ expect_error 
+--------------
+ 
+(1 row)
+
+               test               | sqlstate |      constraint_or_column      | proposed_http | passed 
+----------------------------------+----------+--------------------------------+---------------+--------
+ course foreign key               | 23503    | enrollments_course_id_fkey     |           404 | t
+ courses primary key              | 23505    | courses_pkey                   |           409 | t
+ courses.created_at NOT NULL      | 23502    | created_at                     |           422 | t
+ courses.credits NOT NULL         | 23502    | credits                        |           422 | t
+ courses.description NOT NULL     | 23502    | description                    |           422 | t
+ courses.id NOT NULL              | 23502    | id                             |           422 | t
+ courses.is_elective NOT NULL     | 23502    | is_elective                    |           422 | t
+ courses.likes NOT NULL           | 23502    | likes                          |           422 | t
+ courses.title NOT NULL           | 23502    | title                          |           422 | t
+ credits high                     | 23514    | courses_credits_check          |           422 | t
+ credits low                      | 23514    | courses_credits_check          |           422 | t
+ email uppercase                  | 23514    | students_email_check           |           422 | t
+ enrollments primary key          | 23505    | enrollments_pkey               |           409 | t
+ enrollments.course_id NOT NULL   | 23502    | course_id                      |           422 | t
+ enrollments.enrolled_at NOT NULL | 23502    | enrolled_at                    |           422 | t
+ enrollments.id NOT NULL          | 23502    | id                             |           422 | t
+ enrollments.student_id NOT NULL  | 23502    | student_id                     |           422 | t
+ invalid email                    | 23514    | students_email_check           |           422 | t
+ negative likes                   | 23514    | courses_likes_check            |           422 | t
+ restrict course deletion         | 23503    | enrollments_course_id_fkey     |           409 | t
+ restrict student deletion        | 23503    | enrollments_student_id_fkey    |           409 | t
+ short name                       | 23514    | students_name_check            |           422 | t
+ slug                             | 23514    | courses_id_check               |           422 | t
+ student foreign key              | 23503    | enrollments_student_id_fkey    |           404 | t
+ students primary key             | 23505    | students_pkey                  |           409 | t
+ students.created_at NOT NULL     | 23502    | created_at                     |           422 | t
+ students.email NOT NULL          | 23502    | email                          |           422 | t
+ students.id NOT NULL             | 23502    | id                             |           422 | t
+ students.name NOT NULL           | 23502    | name                           |           422 | t
+ title blank                      | 23514    | courses_title_check            |           422 | t
+ unique email                     | 23505    | students_email_key             |           409 | t
+ unique enrollment                | 23505    | enrollments_student_course_key |           409 | t
+(32 rows)
+
+ passed_constraint_tests 
+-------------------------
+                      32
+(1 row)
+
+ table_name  |            conname             | contype 
+-------------+--------------------------------+---------
+ courses     | courses_credits_check          | c
+ courses     | courses_id_check               | c
+ courses     | courses_likes_check            | c
+ courses     | courses_pkey                   | p
+ courses     | courses_title_check            | c
+ students    | students_email_check           | c
+ students    | students_email_key             | u
+ students    | students_name_check            | c
+ students    | students_pkey                  | p
+ enrollments | enrollments_course_id_fkey     | f
+ enrollments | enrollments_pkey               | p
+ enrollments | enrollments_student_course_key | u
+ enrollments | enrollments_student_id_fkey    | f
+(13 rows)
+
+ table_name  | column_name 
+-------------+-------------
+ courses     | id
+ courses     | title
+ courses     | description
+ courses     | credits
+ courses     | is_elective
+ courses     | likes
+ courses     | created_at
+ enrollments | id
+ enrollments | student_id
+ enrollments | course_id
+ enrollments | enrolled_at
+ students    | id
+ students    | name
+ students    | email
+ students    | created_at
+(15 rows)
+
+ROLLBACK
+
+STDERR (intentional errors are noted in SQL):

@@ -1,3 +1,11 @@
+# Lab 6 — PostgreSQL catalog database
+
+Готовая лабораторная №6: [SQL, ER-диаграмма, запуск и результаты проверок](lab6/README.md).
+
+Быстрый запуск отдельной учебной базы: `powershell -ExecutionPolicy Bypass -File .\lab6\start-local.ps1`.
+
+---
+
 # Course Catalog API — Lab 5
 
 FastAPI backend for a six-course Next.js catalog, with filtering, sorting, pagination, likes and in-memory enrollment.

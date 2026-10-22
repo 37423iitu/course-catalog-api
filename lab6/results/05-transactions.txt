@@ -1,0 +1,21 @@
+BEGIN
+INSERT 0 1
+INSERT 0 1
+COMMIT
+         email          | course_id  
+------------------------+------------
+ tx-success@example.com | api-design
+(1 row)
+
+BEGIN
+DELETE 1
+DELETE 1
+COMMIT
+BEGIN
+INSERT 0 1
+ROLLBACK
+PASS: SQLSTATE 23503; both inserts rolled back; row counts unchanged.
+
+STDERR (intentional errors are noted in SQL):
+psql:C:/Users/user/.codex/.chatgpt-projects/g-p-6ac51903b4f881919915ad28893d152c/lab6-stage/transactions.sql:21: ERROR:  insert or update on table "enrollments" violates foreign key constraint "enrollments_course_id_fkey"
+DETAIL:  Key (course_id)=(missing-course) is not present in table "courses".

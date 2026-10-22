@@ -1,0 +1,50 @@
+BEGIN
+INSERT 0 100000
+ANALYZE
+BEFORE: no composite index
+                                                       QUERY PLAN                                                       
+------------------------------------------------------------------------------------------------------------------------
+ Limit  (cost=2292.93..2292.98 rows=20 width=41) (actual time=5.444..5.447 rows=20 loops=1)
+   Buffers: shared hit=1031
+   ->  Sort  (cost=2292.93..2317.53 rows=9841 width=41) (actual time=5.444..5.445 rows=20 loops=1)
+         Sort Key: likes DESC, id
+         Sort Method: top-N heapsort  Memory: 28kB
+         Buffers: shared hit=1031
+         ->  Seq Scan on courses  (cost=0.00..2031.06 rows=9841 width=41) (actual time=0.013..4.695 rows=10002 loops=1)
+               Filter: is_elective
+               Rows Removed by Filter: 90004
+               Buffers: shared hit=1031
+ Planning:
+   Buffers: shared hit=46
+ Planning Time: 0.318 ms
+ Execution Time: 5.459 ms
+(14 rows)
+
+CREATE INDEX
+ANALYZE
+AFTER: composite index, same query and data
+                                                                     QUERY PLAN                                                                      
+-----------------------------------------------------------------------------------------------------------------------------------------------------
+ Limit  (cost=0.42..6.33 rows=20 width=41) (actual time=0.034..0.051 rows=20 loops=1)
+   Buffers: shared hit=20 read=3
+   ->  Index Scan using courses_elective_popular_idx on courses  (cost=0.42..2978.76 rows=10067 width=41) (actual time=0.033..0.049 rows=20 loops=1)
+         Index Cond: (is_elective = true)
+         Buffers: shared hit=20 read=3
+ Planning:
+   Buffers: shared hit=25 read=1
+ Planning Time: 0.169 ms
+ Execution Time: 0.065 ms
+(9 rows)
+
+ROLLBACK
+CREATE INDEX
+CREATE INDEX
+ANALYZE
+ANALYZE
+ remaining_courses 
+-------------------
+                 6
+(1 row)
+
+
+STDERR (intentional errors are noted in SQL):

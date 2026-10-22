@@ -1,0 +1,14 @@
+          id          |              title               | likes 
+----------------------+----------------------------------+-------
+ ai-integration       | AI/LLM Integration               |    32
+ api-design           | API Design: REST vs GraphQL      |    11
+ backend-fastapi      | Backend Foundations: FastAPI     |    19
+ databases-postgresql | Relational Databases: PostgreSQL |    15
+ modern-frontend      | Modern Frontend: React & Next.js |    24
+ web-security         | Web Security Essentials          |    21
+(6 rows)
+
+Existing lab database preserved. See results/ for the recorded verification.
+Database: 127.0.0.1:55436/catalog_lab6; role: catalog_app
+Local credentials: .lab6-local/connection.json (keep private; excluded from Git).
+Stop server: powershell -ExecutionPolicy Bypass -File .\lab6\start-local.ps1 -Stop

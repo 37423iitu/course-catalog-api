@@ -1,0 +1,437 @@
+The files belonging to this database system will be owned by user "user".
+This user must also own the server process.
+
+The database cluster will be initialized with locale "C".
+The default text search configuration will be set to "english".
+
+Data page checksums are disabled.
+
+creating directory C:/Users/user/Desktop/новый/course-catalog-api/lab6/.lab6-local/data ... ok
+creating subdirectories ... ok
+selecting dynamic shared memory implementation ... windows
+selecting default "max_connections" ... 100
+selecting default "shared_buffers" ... 128MB
+selecting default time zone ... Asia/Qyzylorda
+creating configuration files ... ok
+running bootstrap script ... ok
+performing post-bootstrap initialization ... ok
+syncing data to disk ... ok
+
+Success. You can now start the database server using:
+
+    ^"C^:^\Program^ Files^\PostgreSQL^\17^\bin^\pg^_ctl^" -D ^"C^:^\Users^\user^\Desktop^\^н^о^в^ы^й^\course^-catalog^-api^\lab6^\^.lab6^-local^\data^" -l logfile start
+
+waiting for server to start.... done
+server started
+CREATE ROLE
+CREATE DATABASE
+Pager usage is off.
+BEGIN
+CREATE TABLE
+CREATE TABLE
+CREATE TABLE
+COMMIT
+BEGIN
+INSERT 0 6
+INSERT 0 3
+INSERT 0 4
+COMMIT
+          id          |              title               | credits | is_elective | likes 
+----------------------+----------------------------------+---------+-------------+-------
+ ai-integration       | AI/LLM Integration               |       5 | t           |    32
+ api-design           | API Design: REST vs GraphQL      |       4 | t           |    11
+ backend-fastapi      | Backend Foundations: FastAPI     |       5 | f           |    19
+ databases-postgresql | Relational Databases: PostgreSQL |       5 | f           |    15
+ modern-frontend      | Modern Frontend: React & Next.js |       5 | f           |    24
+ web-security         | Web Security Essentials          |       4 | f           |    21
+(6 rows)
+
+     name     |        email         |              title               
+--------------+----------------------+----------------------------------
+ Aigerim      | aigerim@example.com  | AI/LLM Integration
+ Gani Karimov | gani@example.com     | Backend Foundations: FastAPI
+ Gani Karimov | gani@example.com     | Relational Databases: PostgreSQL
+ Nurserik     | nurserik@example.com | Modern Frontend: React & Next.js
+(4 rows)
+
+PREPARE
+       id       |            title            |                     description                     | credits | is_elective | likes 
+----------------+-----------------------------+-----------------------------------------------------+---------+-------------+-------
+ ai-integration | AI/LLM Integration          | LLM features in an app via the OpenAI API.          |       5 | t           |    32
+ api-design     | API Design: REST vs GraphQL | Comparing REST and GraphQL in one hands-on project. |       4 | t           |    11
+(2 rows)
+
+       id        |              title               |                     description                      | credits | is_elective | likes 
+-----------------+----------------------------------+------------------------------------------------------+---------+-------------+-------
+ backend-fastapi | Backend Foundations: FastAPI     | Async REST APIs in Python with FastAPI and Pydantic. |       5 | f           |    19
+ modern-frontend | Modern Frontend: React & Next.js | React 19, Server Components, and the App Router.     |       5 | f           |    24
+(2 rows)
+
+PREPARE
+          id          |              title               |                    description                    | credits | is_elective | likes 
+----------------------+----------------------------------+---------------------------------------------------+---------+-------------+-------
+ databases-postgresql | Relational Databases: PostgreSQL | Schemas, SQLAlchemy, and migrations with Alembic. |       5 | f           |    15
+(1 row)
+
+PREPARE
+BEGIN
+          id          |              title               |                    description                    | credits | is_elective | likes 
+----------------------+----------------------------------+---------------------------------------------------+---------+-------------+-------
+ databases-postgresql | Relational Databases: PostgreSQL | Schemas, SQLAlchemy, and migrations with Alembic. |       5 | f           |    16
+(1 row)
+
+UPDATE 1
+ROLLBACK
+PREPARE
+BEGIN
+ id | student_id | course_id  |          enrolled_at          
+----+------------+------------+-------------------------------
+  5 |          4 | api-design | 2026-10-22 21:39:13.142458+05
+(1 row)
+
+INSERT 0 1
+ROLLBACK
+PREPARE
+ id |      course_id       | student_name |    student_email     |           course_title           |          enrolled_at          
+----+----------------------+--------------+----------------------+----------------------------------+-------------------------------
+  1 | backend-fastapi      | Gani Karimov | gani@example.com     | Backend Foundations: FastAPI     | 2026-10-22 21:39:13.132126+05
+  2 | databases-postgresql | Gani Karimov | gani@example.com     | Relational Databases: PostgreSQL | 2026-10-22 21:39:13.132126+05
+  3 | ai-integration       | Aigerim      | aigerim@example.com  | AI/LLM Integration               | 2026-10-22 21:39:13.132126+05
+  4 | modern-frontend      | Nurserik     | nurserik@example.com | Modern Frontend: React & Next.js | 2026-10-22 21:39:13.132126+05
+(4 rows)
+
+PREPARE
+          id          |              title               | likes | enrollment_count 
+----------------------+----------------------------------+-------+------------------
+ ai-integration       | AI/LLM Integration               |    32 |                1
+ backend-fastapi      | Backend Foundations: FastAPI     |    19 |                1
+ databases-postgresql | Relational Databases: PostgreSQL |    15 |                1
+ modern-frontend      | Modern Frontend: React & Next.js |    24 |                1
+ api-design           | API Design: REST vs GraphQL      |    11 |                0
+ web-security         | Web Security Essentials          |    21 |                0
+(6 rows)
+
+ course_count | total_likes | average_credits 
+--------------+-------------+-----------------
+            6 |         122 |            4.67
+(1 row)
+
+DEALLOCATE ALL
+BEGIN
+CREATE TABLE
+CREATE FUNCTION
+ expect_error 
+--------------
+ 
+(1 row)
+
+ expect_error 
+--------------
+ 
+(1 row)
+
+ expect_error 
+--------------
+ 
+(1 row)
+
+ expect_error 
+--------------
+ 
+(1 row)
+
+ expect_error 
+--------------
+ 
+(1 row)
+
+ expect_error 
+--------------
+ 
+(1 row)
+
+ expect_error 
+--------------
+ 
+(1 row)
+
+ expect_error 
+--------------
+ 
+(1 row)
+
+ expect_error 
+--------------
+ 
+(1 row)
+
+ expect_error 
+--------------
+ 
+(1 row)
+
+ expect_error 
+--------------
+ 
+(1 row)
+
+ expect_error 
+--------------
+ 
+(1 row)
+
+ expect_error 
+--------------
+ 
+(1 row)
+
+ expect_error 
+--------------
+ 
+(1 row)
+
+ expect_error 
+--------------
+ 
+(1 row)
+
+ expect_error 
+--------------
+ 
+(1 row)
+
+ expect_error 
+--------------
+ 
+(1 row)
+
+ expect_error 
+--------------
+ 
+(1 row)
+
+ expect_error 
+--------------
+ 
+(1 row)
+
+ expect_error 
+--------------
+ 
+(1 row)
+
+ expect_error 
+--------------
+ 
+(1 row)
+
+ expect_error 
+--------------
+ 
+(1 row)
+
+ expect_error 
+--------------
+ 
+(1 row)
+
+ expect_error 
+--------------
+ 
+(1 row)
+
+ expect_error 
+--------------
+ 
+(1 row)
+
+ expect_error 
+--------------
+ 
+(1 row)
+
+ expect_error 
+--------------
+ 
+(1 row)
+
+ expect_error 
+--------------
+ 
+(1 row)
+
+ expect_error 
+--------------
+ 
+(1 row)
+
+ expect_error 
+--------------
+ 
+(1 row)
+
+ expect_error 
+--------------
+ 
+(1 row)
+
+ expect_error 
+--------------
+ 
+(1 row)
+
+               test               | sqlstate |      constraint_or_column      | proposed_http | passed 
+----------------------------------+----------+--------------------------------+---------------+--------
+ course foreign key               | 23503    | enrollments_course_id_fkey     |           404 | t
+ courses primary key              | 23505    | courses_pkey                   |           409 | t
+ courses.created_at NOT NULL      | 23502    | created_at                     |           422 | t
+ courses.credits NOT NULL         | 23502    | credits                        |           422 | t
+ courses.description NOT NULL     | 23502    | description                    |           422 | t
+ courses.id NOT NULL              | 23502    | id                             |           422 | t
+ courses.is_elective NOT NULL     | 23502    | is_elective                    |           422 | t
+ courses.likes NOT NULL           | 23502    | likes                          |           422 | t
+ courses.title NOT NULL           | 23502    | title                          |           422 | t
+ credits high                     | 23514    | courses_credits_check          |           422 | t
+ credits low                      | 23514    | courses_credits_check          |           422 | t
+ email uppercase                  | 23514    | students_email_check           |           422 | t
+ enrollments primary key          | 23505    | enrollments_pkey               |           409 | t
+ enrollments.course_id NOT NULL   | 23502    | course_id                      |           422 | t
+ enrollments.enrolled_at NOT NULL | 23502    | enrolled_at                    |           422 | t
+ enrollments.id NOT NULL          | 23502    | id                             |           422 | t
+ enrollments.student_id NOT NULL  | 23502    | student_id                     |           422 | t
+ invalid email                    | 23514    | students_email_check           |           422 | t
+ negative likes                   | 23514    | courses_likes_check            |           422 | t
+ restrict course deletion         | 23503    | enrollments_course_id_fkey     |           409 | t
+ restrict student deletion        | 23503    | enrollments_student_id_fkey    |           409 | t
+ short name                       | 23514    | students_name_check            |           422 | t
+ slug                             | 23514    | courses_id_check               |           422 | t
+ student foreign key              | 23503    | enrollments_student_id_fkey    |           404 | t
+ students primary key             | 23505    | students_pkey                  |           409 | t
+ students.created_at NOT NULL     | 23502    | created_at                     |           422 | t
+ students.email NOT NULL          | 23502    | email                          |           422 | t
+ students.id NOT NULL             | 23502    | id                             |           422 | t
+ students.name NOT NULL           | 23502    | name                           |           422 | t
+ title blank                      | 23514    | courses_title_check            |           422 | t
+ unique email                     | 23505    | students_email_key             |           409 | t
+ unique enrollment                | 23505    | enrollments_student_course_key |           409 | t
+(32 rows)
+
+ passed_constraint_tests 
+-------------------------
+                      32
+(1 row)
+
+ table_name  |            conname             | contype 
+-------------+--------------------------------+---------
+ courses     | courses_credits_check          | c
+ courses     | courses_id_check               | c
+ courses     | courses_likes_check            | c
+ courses     | courses_pkey                   | p
+ courses     | courses_title_check            | c
+ students    | students_email_check           | c
+ students    | students_email_key             | u
+ students    | students_name_check            | c
+ students    | students_pkey                  | p
+ enrollments | enrollments_course_id_fkey     | f
+ enrollments | enrollments_pkey               | p
+ enrollments | enrollments_student_course_key | u
+ enrollments | enrollments_student_id_fkey    | f
+(13 rows)
+
+ table_name  | column_name 
+-------------+-------------
+ courses     | id
+ courses     | title
+ courses     | description
+ courses     | credits
+ courses     | is_elective
+ courses     | likes
+ courses     | created_at
+ enrollments | id
+ enrollments | student_id
+ enrollments | course_id
+ enrollments | enrolled_at
+ students    | id
+ students    | name
+ students    | email
+ students    | created_at
+(15 rows)
+
+ROLLBACK
+BEGIN
+INSERT 0 1
+INSERT 0 1
+COMMIT
+         email          | course_id  
+------------------------+------------
+ tx-success@example.com | api-design
+(1 row)
+
+BEGIN
+DELETE 1
+DELETE 1
+COMMIT
+BEGIN
+INSERT 0 1
+psql:C:/Users/user/Desktop/новый/course-catalog-api/lab6/transactions.sql:21: ERROR:  insert or update on table "enrollments" violates foreign key constraint "enrollments_course_id_fkey"
+DETAIL:  Key (course_id)=(missing-course) is not present in table "courses".
+ROLLBACK
+PASS: SQLSTATE 23503; both inserts rolled back; row counts unchanged.
+BEGIN
+INSERT 0 100000
+ANALYZE
+BEFORE: no composite index
+                                                       QUERY PLAN                                                       
+------------------------------------------------------------------------------------------------------------------------
+ Limit  (cost=2295.40..2295.45 rows=20 width=41) (actual time=6.264..6.266 rows=20 loops=1)
+   Buffers: shared hit=1031
+   ->  Sort  (cost=2295.40..2320.24 rows=9934 width=41) (actual time=6.263..6.263 rows=20 loops=1)
+         Sort Key: likes DESC, id
+         Sort Method: top-N heapsort  Memory: 28kB
+         Buffers: shared hit=1031
+         ->  Seq Scan on courses  (cost=0.00..2031.06 rows=9934 width=41) (actual time=0.021..5.346 rows=10002 loops=1)
+               Filter: is_elective
+               Rows Removed by Filter: 90004
+               Buffers: shared hit=1031
+ Planning:
+   Buffers: shared hit=29
+ Planning Time: 0.440 ms
+ Execution Time: 6.290 ms
+(14 rows)
+
+CREATE INDEX
+ANALYZE
+AFTER: composite index, same query and data
+                                                                     QUERY PLAN                                                                     
+----------------------------------------------------------------------------------------------------------------------------------------------------
+ Limit  (cost=0.42..6.42 rows=20 width=41) (actual time=0.027..0.041 rows=20 loops=1)
+   Buffers: shared hit=20 read=3
+   ->  Index Scan using courses_elective_popular_idx on courses  (cost=0.42..2967.74 rows=9891 width=41) (actual time=0.026..0.040 rows=20 loops=1)
+         Index Cond: (is_elective = true)
+         Buffers: shared hit=20 read=3
+ Planning:
+   Buffers: shared hit=25 read=1
+ Planning Time: 0.121 ms
+ Execution Time: 0.051 ms
+(9 rows)
+
+ROLLBACK
+CREATE INDEX
+CREATE INDEX
+ANALYZE
+ANALYZE
+ remaining_courses 
+-------------------
+                 6
+(1 row)
+
+DO
+                                 verification                                  
+-------------------------------------------------------------------------------
+ PASS: 3 tables; 6 courses; 3 students; 4 enrollments; 122 likes; no demo rows
+(1 row)
+
+Lab 6 completed successfully.
+Database: 127.0.0.1:55436/catalog_lab6; role: catalog_app
+Local credentials: .lab6-local/connection.json (keep private; excluded from Git).
+Stop server: powershell -ExecutionPolicy Bypass -File .\lab6\start-local.ps1 -Stop

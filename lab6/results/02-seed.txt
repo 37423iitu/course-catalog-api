@@ -1,0 +1,25 @@
+BEGIN
+INSERT 0 6
+INSERT 0 3
+INSERT 0 4
+COMMIT
+          id          |              title               | credits | is_elective | likes 
+----------------------+----------------------------------+---------+-------------+-------
+ ai-integration       | AI/LLM Integration               |       5 | t           |    32
+ api-design           | API Design: REST vs GraphQL      |       4 | t           |    11
+ backend-fastapi      | Backend Foundations: FastAPI     |       5 | f           |    19
+ databases-postgresql | Relational Databases: PostgreSQL |       5 | f           |    15
+ modern-frontend      | Modern Frontend: React & Next.js |       5 | f           |    24
+ web-security         | Web Security Essentials          |       4 | f           |    21
+(6 rows)
+
+     name     |        email         |              title               
+--------------+----------------------+----------------------------------
+ Aigerim      | aigerim@example.com  | AI/LLM Integration
+ Gani Karimov | gani@example.com     | Backend Foundations: FastAPI
+ Gani Karimov | gani@example.com     | Relational Databases: PostgreSQL
+ Nurserik     | nurserik@example.com | Modern Frontend: React & Next.js
+(4 rows)
+
+
+STDERR (intentional errors are noted in SQL):

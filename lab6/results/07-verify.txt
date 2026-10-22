@@ -1,0 +1,8 @@
+DO
+                                 verification                                  
+-------------------------------------------------------------------------------
+ PASS: 3 tables; 6 courses; 3 students; 4 enrollments; 122 likes; no demo rows
+(1 row)
+
+
+STDERR (intentional errors are noted in SQL):

@@ -1,0 +1,65 @@
+PREPARE
+       id       |            title            |                     description                     | credits | is_elective | likes 
+----------------+-----------------------------+-----------------------------------------------------+---------+-------------+-------
+ ai-integration | AI/LLM Integration          | LLM features in an app via the OpenAI API.          |       5 | t           |    32
+ api-design     | API Design: REST vs GraphQL | Comparing REST and GraphQL in one hands-on project. |       4 | t           |    11
+(2 rows)
+
+       id        |              title               |                     description                      | credits | is_elective | likes 
+-----------------+----------------------------------+------------------------------------------------------+---------+-------------+-------
+ backend-fastapi | Backend Foundations: FastAPI     | Async REST APIs in Python with FastAPI and Pydantic. |       5 | f           |    19
+ modern-frontend | Modern Frontend: React & Next.js | React 19, Server Components, and the App Router.     |       5 | f           |    24
+(2 rows)
+
+PREPARE
+          id          |              title               |                    description                    | credits | is_elective | likes 
+----------------------+----------------------------------+---------------------------------------------------+---------+-------------+-------
+ databases-postgresql | Relational Databases: PostgreSQL | Schemas, SQLAlchemy, and migrations with Alembic. |       5 | f           |    15
+(1 row)
+
+PREPARE
+BEGIN
+          id          |              title               |                    description                    | credits | is_elective | likes 
+----------------------+----------------------------------+---------------------------------------------------+---------+-------------+-------
+ databases-postgresql | Relational Databases: PostgreSQL | Schemas, SQLAlchemy, and migrations with Alembic. |       5 | f           |    16
+(1 row)
+
+UPDATE 1
+ROLLBACK
+PREPARE
+BEGIN
+ id | student_id | course_id  |         enrolled_at          
+----+------------+------------+------------------------------
+  5 |          4 | api-design | 2026-10-22 21:38:21.33044+05
+(1 row)
+
+INSERT 0 1
+ROLLBACK
+PREPARE
+ id |      course_id       | student_name |    student_email     |           course_title           |          enrolled_at          
+----+----------------------+--------------+----------------------+----------------------------------+-------------------------------
+  1 | backend-fastapi      | Gani Karimov | gani@example.com     | Backend Foundations: FastAPI     | 2026-10-22 21:38:21.271877+05
+  2 | databases-postgresql | Gani Karimov | gani@example.com     | Relational Databases: PostgreSQL | 2026-10-22 21:38:21.271877+05
+  3 | ai-integration       | Aigerim      | aigerim@example.com  | AI/LLM Integration               | 2026-10-22 21:38:21.271877+05
+  4 | modern-frontend      | Nurserik     | nurserik@example.com | Modern Frontend: React & Next.js | 2026-10-22 21:38:21.271877+05
+(4 rows)
+
+PREPARE
+          id          |              title               | likes | enrollment_count 
+----------------------+----------------------------------+-------+------------------
+ ai-integration       | AI/LLM Integration               |    32 |                1
+ backend-fastapi      | Backend Foundations: FastAPI     |    19 |                1
+ databases-postgresql | Relational Databases: PostgreSQL |    15 |                1
+ modern-frontend      | Modern Frontend: React & Next.js |    24 |                1
+ api-design           | API Design: REST vs GraphQL      |    11 |                0
+ web-security         | Web Security Essentials          |    21 |                0
+(6 rows)
+
+ course_count | total_likes | average_credits 
+--------------+-------------+-----------------
+            6 |         122 |            4.67
+(1 row)
+
+DEALLOCATE ALL
+
+STDERR (intentional errors are noted in SQL):
