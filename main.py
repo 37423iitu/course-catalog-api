@@ -3,6 +3,7 @@ from fastapi import Depends, FastAPI, HTTPException, Query
 from fastapi.middleware.cors import CORSMiddleware
 from sqlalchemy import func, select, update
 from sqlalchemy.orm import Session
+from sqlalchemy.exc import IntegrityError
 from db import get_db
 from models import Course, Enrollment, Student
 from schemas import (CourseOut, CourseStats, EnrollmentDetail, EnrollmentIn,
@@ -13,6 +14,30 @@ app.add_middleware(
     CORSMiddleware, allow_origins=["http://localhost:3000"],
     allow_methods=["*"], allow_headers=["*"],
 )
+CONSTRAINT_ERRORS = {
+    "students_email_key": (409, "Student with this email already exists"),
+    "enrollments_course_id_student_id_key": (409, "Student is already enrolled in this course"),
+    "enrollments_course_id_fkey": (404, "Course not found"),
+    "enrollments_student_id_fkey": (404, "Student not found"),
+}
+
+
+def raise_http_error(exc: IntegrityError):
+    name = getattr(getattr(exc.orig, "diag", None), "constraint_name", None)
+    if name not in CONSTRAINT_ERRORS:
+        raise exc
+    status, detail = CONSTRAINT_ERRORS[name]
+    raise HTTPException(status_code=status, detail=detail) from exc
+
+
+def commit_or_http_error(db: Session):
+    try:
+        db.commit()
+    except IntegrityError as exc:
+        db.rollback()
+        raise_http_error(exc)
+
+
 SessionDep = Annotated[Session, Depends(get_db)]
 
 
@@ -62,7 +87,7 @@ def like_course(course_id: str, db: SessionDep):
 def create_student(data: StudentIn, db: SessionDep):
     student = Student(name=data.name, email=str(data.email))
     db.add(student)
-    db.commit()
+    commit_or_http_error(db)
     return student
 
 
@@ -70,7 +95,7 @@ def create_student(data: StudentIn, db: SessionDep):
 def create_enrollment(data: EnrollmentIn, db: SessionDep):
     enrollment = Enrollment(course_id=data.course_id, student_id=data.student_id)
     db.add(enrollment)
-    db.commit()
+    commit_or_http_error(db)
     return enrollment
 
 
