@@ -1,0 +1,609 @@
+$ python -m alembic revision --autogenerate -m
+Generating C:\Users\user\AppData\Local\Temp\lab7-project-_pz1zsos\alembic\versions\0001_create_catalog_tables.py ...  done
+INFO  [alembic.runtime.migration] Context impl PostgresqlImpl.
+INFO  [alembic.runtime.migration] Will assume transactional DDL.
+INFO  [alembic.runtime.plugins] setting up autogenerate plugin alembic.autogenerate.schemas
+INFO  [alembic.runtime.plugins] setting up autogenerate plugin alembic.autogenerate.tables
+INFO  [alembic.runtime.plugins] setting up autogenerate plugin alembic.autogenerate.types
+INFO  [alembic.runtime.plugins] setting up autogenerate plugin alembic.autogenerate.constraints
+INFO  [alembic.runtime.plugins] setting up autogenerate plugin alembic.autogenerate.defaults
+INFO  [alembic.runtime.plugins] setting up autogenerate plugin alembic.autogenerate.comments
+INFO  [alembic.autogenerate.compare.tables] Detected added table 'courses'
+INFO  [alembic.autogenerate.compare.tables] Detected added table 'students'
+INFO  [alembic.autogenerate.compare.tables] Detected added table 'enrollments'
+INFO  [alembic.autogenerate.compare.constraints] Detected added index 'enrollments_student_id_idx' on '('student_id',)'
+
+Generated 0001 contains identity columns, final constraint names and the index.
+$ python -m alembic upgrade head
+INFO  [alembic.runtime.migration] Context impl PostgresqlImpl.
+INFO  [alembic.runtime.migration] Will assume transactional DDL.
+INFO  [alembic.runtime.migration] Running upgrade  -> 0001, create catalog tables
+
+$ python -m alembic check
+No new upgrade operations detected.
+INFO  [alembic.runtime.migration] Context impl PostgresqlImpl.
+INFO  [alembic.runtime.migration] Will assume transactional DDL.
+INFO  [alembic.runtime.plugins] setting up autogenerate plugin alembic.autogenerate.schemas
+INFO  [alembic.runtime.plugins] setting up autogenerate plugin alembic.autogenerate.tables
+INFO  [alembic.runtime.plugins] setting up autogenerate plugin alembic.autogenerate.types
+INFO  [alembic.runtime.plugins] setting up autogenerate plugin alembic.autogenerate.constraints
+INFO  [alembic.runtime.plugins] setting up autogenerate plugin alembic.autogenerate.defaults
+INFO  [alembic.runtime.plugins] setting up autogenerate plugin alembic.autogenerate.comments
+
+$ python -m alembic upgrade head
+INFO  [alembic.runtime.migration] Context impl PostgresqlImpl.
+INFO  [alembic.runtime.migration] Will assume transactional DDL.
+INFO  [alembic.runtime.migration] Running upgrade  -> 0001, create catalog tables
+Traceback (most recent call last):
+  File "C:\Users\user\.codex\.chatgpt-projects\g-p-6ac51903b4f881919915ad28893d152c\lab7-venv\Lib\site-packages\sqlalchemy\engine\base.py", line 1977, in _exec_single_context
+    self.dialect.do_execute(
+  File "C:\Users\user\.codex\.chatgpt-projects\g-p-6ac51903b4f881919915ad28893d152c\lab7-venv\Lib\site-packages\sqlalchemy\engine\default.py", line 1192, in do_execute
+    cursor.execute(statement, parameters)
+  File "C:\Users\user\.codex\.chatgpt-projects\g-p-6ac51903b4f881919915ad28893d152c\lab7-venv\Lib\site-packages\psycopg\cursor.py", line 117, in execute
+    raise ex.with_traceback(None)
+psycopg.errors.DuplicateTable: relation "courses" already exists
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "C:\Users\user\.codex\.chatgpt-projects\g-p-6ac51903b4f881919915ad28893d152c\lab7-venv\Lib\site-packages\alembic\__main__.py", line 4, in <module>
+    main(prog="alembic")
+  File "C:\Users\user\.codex\.chatgpt-projects\g-p-6ac51903b4f881919915ad28893d152c\lab7-venv\Lib\site-packages\alembic\config.py", line 1039, in main
+    CommandLine(prog=prog).main(argv=argv)
+  File "C:\Users\user\.codex\.chatgpt-projects\g-p-6ac51903b4f881919915ad28893d152c\lab7-venv\Lib\site-packages\alembic\config.py", line 1029, in main
+    self.run_cmd(cfg, options)
+  File "C:\Users\user\.codex\.chatgpt-projects\g-p-6ac51903b4f881919915ad28893d152c\lab7-venv\Lib\site-packages\alembic\config.py", line 963, in run_cmd
+    fn(
+  File "C:\Users\user\.codex\.chatgpt-projects\g-p-6ac51903b4f881919915ad28893d152c\lab7-venv\Lib\site-packages\alembic\command.py", line 487, in upgrade
+    script.run_env()
+  File "C:\Users\user\.codex\.chatgpt-projects\g-p-6ac51903b4f881919915ad28893d152c\lab7-venv\Lib\site-packages\alembic\script\base.py", line 550, in run_env
+    util.load_python_file(self.dir, "env.py")
+  File "C:\Users\user\.codex\.chatgpt-projects\g-p-6ac51903b4f881919915ad28893d152c\lab7-venv\Lib\site-packages\alembic\util\pyfiles.py", line 114, in load_python_file
+    module = load_module_py(module_id, path)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\user\.codex\.chatgpt-projects\g-p-6ac51903b4f881919915ad28893d152c\lab7-venv\Lib\site-packages\alembic\util\pyfiles.py", line 132, in load_module_py
+    spec.loader.exec_module(module)  # type: ignore
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<frozen importlib._bootstrap_external>", line 995, in exec_module
+  File "<frozen importlib._bootstrap>", line 488, in _call_with_frames_removed
+  File "C:\Users\user\AppData\Local\Temp\lab7-project-_pz1zsos\alembic\env.py", line 35, in <module>
+    run_migrations_online()
+  File "C:\Users\user\AppData\Local\Temp\lab7-project-_pz1zsos\alembic\env.py", line 28, in run_migrations_online
+    context.run_migrations()
+  File "<string>", line 8, in run_migrations
+  File "C:\Users\user\.codex\.chatgpt-projects\g-p-6ac51903b4f881919915ad28893d152c\lab7-venv\Lib\site-packages\alembic\runtime\environment.py", line 970, in run_migrations
+    self.get_context().run_migrations(**kw)
+  File "C:\Users\user\.codex\.chatgpt-projects\g-p-6ac51903b4f881919915ad28893d152c\lab7-venv\Lib\site-packages\alembic\runtime\migration.py", line 616, in run_migrations
+    step.migration_fn(**kw)
+  File "C:\Users\user\AppData\Local\Temp\lab7-project-_pz1zsos\alembic\versions\0001_create_catalog_tables.py", line 20, in upgrade
+    op.create_table('courses',
+  File "<string>", line 8, in create_table
+  File "<string>", line 3, in create_table
+  File "C:\Users\user\.codex\.chatgpt-projects\g-p-6ac51903b4f881919915ad28893d152c\lab7-venv\Lib\site-packages\alembic\operations\ops.py", line 1323, in create_table
+    return operations.invoke(op)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\user\.codex\.chatgpt-projects\g-p-6ac51903b4f881919915ad28893d152c\lab7-venv\Lib\site-packages\alembic\operations\base.py", line 448, in invoke
+    return fn(self, operation)
+           ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\user\.codex\.chatgpt-projects\g-p-6ac51903b4f881919915ad28893d152c\lab7-venv\Lib\site-packages\alembic\operations\toimpl.py", line 139, in create_table
+    operations.impl.create_table(table, **kw)
+  File "C:\Users\user\.codex\.chatgpt-projects\g-p-6ac51903b4f881919915ad28893d152c\lab7-venv\Lib\site-packages\alembic\ddl\impl.py", line 434, in create_table
+    self._exec(schema.CreateTable(table, **kw))
+  File "C:\Users\user\.codex\.chatgpt-projects\g-p-6ac51903b4f881919915ad28893d152c\lab7-venv\Lib\site-packages\alembic\ddl\impl.py", line 252, in _exec
+    return conn.execute(construct, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\user\.codex\.chatgpt-projects\g-p-6ac51903b4f881919915ad28893d152c\lab7-venv\Lib\site-packages\sqlalchemy\engine\base.py", line 1494, in execute
+    return meth(
+           ^^^^^
+  File "C:\Users\user\.codex\.chatgpt-projects\g-p-6ac51903b4f881919915ad28893d152c\lab7-venv\Lib\site-packages\sqlalchemy\sql\ddl.py", line 203, in _execute_on_connection
+    return connection._execute_ddl(
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\user\.codex\.chatgpt-projects\g-p-6ac51903b4f881919915ad28893d152c\lab7-venv\Lib\site-packages\sqlalchemy\engine\base.py", line 1603, in _execute_ddl
+    ret = self._execute_context(
+          ^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\user\.codex\.chatgpt-projects\g-p-6ac51903b4f881919915ad28893d152c\lab7-venv\Lib\site-packages\sqlalchemy\engine\base.py", line 1868, in _execute_context
+    return self._exec_single_context(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\user\.codex\.chatgpt-projects\g-p-6ac51903b4f881919915ad28893d152c\lab7-venv\Lib\site-packages\sqlalchemy\engine\base.py", line 1996, in _exec_single_context
+    self._handle_dbapi_exception(
+  File "C:\Users\user\.codex\.chatgpt-projects\g-p-6ac51903b4f881919915ad28893d152c\lab7-venv\Lib\site-packages\sqlalchemy\engine\base.py", line 2351, in _handle_dbapi_exception
+    raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
+  File "C:\Users\user\.codex\.chatgpt-projects\g-p-6ac51903b4f881919915ad28893d152c\lab7-venv\Lib\site-packages\sqlalchemy\engine\base.py", line 1977, in _exec_single_context
+    self.dialect.do_execute(
+  File "C:\Users\user\.codex\.chatgpt-projects\g-p-6ac51903b4f881919915ad28893d152c\lab7-venv\Lib\site-packages\sqlalchemy\engine\default.py", line 1192, in do_execute
+    cursor.execute(statement, parameters)
+  File "C:\Users\user\.codex\.chatgpt-projects\g-p-6ac51903b4f881919915ad28893d152c\lab7-venv\Lib\site-packages\psycopg\cursor.py", line 117, in execute
+    raise ex.with_traceback(None)
+sqlalchemy.exc.ProgrammingError: (psycopg.errors.DuplicateTable) relation "courses" already exists
+[SQL: 
+CREATE TABLE courses (
+	id TEXT NOT NULL, 
+	title TEXT NOT NULL, 
+	description TEXT NOT NULL, 
+	credits INTEGER NOT NULL, 
+	is_elective BOOLEAN DEFAULT false NOT NULL, 
+	likes INTEGER DEFAULT 0 NOT NULL, 
+	CONSTRAINT courses_pkey PRIMARY KEY (id), 
+	CONSTRAINT courses_credits_check CHECK (credits > 0), 
+	CONSTRAINT courses_likes_check CHECK (likes >= 0)
+)
+
+]
+(Background on this error at: https://sqlalche.me/e/21/f405)
+
+$ python -m alembic stamp 0001
+INFO  [alembic.runtime.migration] Context impl PostgresqlImpl.
+INFO  [alembic.runtime.migration] Will assume transactional DDL.
+INFO  [alembic.runtime.migration] Running stamp_revision  -> 0001
+
+$ python -m alembic check
+No new upgrade operations detected.
+INFO  [alembic.runtime.migration] Context impl PostgresqlImpl.
+INFO  [alembic.runtime.migration] Will assume transactional DDL.
+INFO  [alembic.runtime.plugins] setting up autogenerate plugin alembic.autogenerate.schemas
+INFO  [alembic.runtime.plugins] setting up autogenerate plugin alembic.autogenerate.tables
+INFO  [alembic.runtime.plugins] setting up autogenerate plugin alembic.autogenerate.types
+INFO  [alembic.runtime.plugins] setting up autogenerate plugin alembic.autogenerate.constraints
+INFO  [alembic.runtime.plugins] setting up autogenerate plugin alembic.autogenerate.defaults
+INFO  [alembic.runtime.plugins] setting up autogenerate plugin alembic.autogenerate.comments
+
+$ python check_models.py
+courses: 6 rows
+students: 3 rows
+enrollments: 6 rows
+names only in models: none
+names only in database: none
+
+EXPERIMENT 1: change the unique naming convention
+$ python check_models.py
+courses: 6 rows
+students: 3 rows
+enrollments: 6 rows
+names only in models: ['enrollments_course_id_unique', 'students_email_unique']
+names only in database: ['enrollments_course_id_student_id_key', 'students_email_key']
+
+$ python check_models.py
+courses: 6 rows
+students: 3 rows
+enrollments: 6 rows
+names only in models: none
+names only in database: none
+
+EXPERIMENT 5: add a required column directly on nonempty data
+$ python -m alembic upgrade head
+INFO  [alembic.runtime.migration] Context impl PostgresqlImpl.
+INFO  [alembic.runtime.migration] Will assume transactional DDL.
+INFO  [alembic.runtime.migration] Running upgrade 0001 -> 0002
+Traceback (most recent call last):
+  File "C:\Users\user\.codex\.chatgpt-projects\g-p-6ac51903b4f881919915ad28893d152c\lab7-venv\Lib\site-packages\sqlalchemy\engine\base.py", line 1977, in _exec_single_context
+    self.dialect.do_execute(
+  File "C:\Users\user\.codex\.chatgpt-projects\g-p-6ac51903b4f881919915ad28893d152c\lab7-venv\Lib\site-packages\sqlalchemy\engine\default.py", line 1192, in do_execute
+    cursor.execute(statement, parameters)
+  File "C:\Users\user\.codex\.chatgpt-projects\g-p-6ac51903b4f881919915ad28893d152c\lab7-venv\Lib\site-packages\psycopg\cursor.py", line 117, in execute
+    raise ex.with_traceback(None)
+psycopg.errors.NotNullViolation: column "level" of relation "courses" contains null values
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "C:\Users\user\.codex\.chatgpt-projects\g-p-6ac51903b4f881919915ad28893d152c\lab7-venv\Lib\site-packages\alembic\__main__.py", line 4, in <module>
+    main(prog="alembic")
+  File "C:\Users\user\.codex\.chatgpt-projects\g-p-6ac51903b4f881919915ad28893d152c\lab7-venv\Lib\site-packages\alembic\config.py", line 1039, in main
+    CommandLine(prog=prog).main(argv=argv)
+  File "C:\Users\user\.codex\.chatgpt-projects\g-p-6ac51903b4f881919915ad28893d152c\lab7-venv\Lib\site-packages\alembic\config.py", line 1029, in main
+    self.run_cmd(cfg, options)
+  File "C:\Users\user\.codex\.chatgpt-projects\g-p-6ac51903b4f881919915ad28893d152c\lab7-venv\Lib\site-packages\alembic\config.py", line 963, in run_cmd
+    fn(
+  File "C:\Users\user\.codex\.chatgpt-projects\g-p-6ac51903b4f881919915ad28893d152c\lab7-venv\Lib\site-packages\alembic\command.py", line 487, in upgrade
+    script.run_env()
+  File "C:\Users\user\.codex\.chatgpt-projects\g-p-6ac51903b4f881919915ad28893d152c\lab7-venv\Lib\site-packages\alembic\script\base.py", line 550, in run_env
+    util.load_python_file(self.dir, "env.py")
+  File "C:\Users\user\.codex\.chatgpt-projects\g-p-6ac51903b4f881919915ad28893d152c\lab7-venv\Lib\site-packages\alembic\util\pyfiles.py", line 114, in load_python_file
+    module = load_module_py(module_id, path)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\user\.codex\.chatgpt-projects\g-p-6ac51903b4f881919915ad28893d152c\lab7-venv\Lib\site-packages\alembic\util\pyfiles.py", line 132, in load_module_py
+    spec.loader.exec_module(module)  # type: ignore
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<frozen importlib._bootstrap_external>", line 995, in exec_module
+  File "<frozen importlib._bootstrap>", line 488, in _call_with_frames_removed
+  File "C:\Users\user\AppData\Local\Temp\lab7-project-_pz1zsos\alembic\env.py", line 35, in <module>
+    run_migrations_online()
+  File "C:\Users\user\AppData\Local\Temp\lab7-project-_pz1zsos\alembic\env.py", line 28, in run_migrations_online
+    context.run_migrations()
+  File "<string>", line 8, in run_migrations
+  File "C:\Users\user\.codex\.chatgpt-projects\g-p-6ac51903b4f881919915ad28893d152c\lab7-venv\Lib\site-packages\alembic\runtime\environment.py", line 970, in run_migrations
+    self.get_context().run_migrations(**kw)
+  File "C:\Users\user\.codex\.chatgpt-projects\g-p-6ac51903b4f881919915ad28893d152c\lab7-venv\Lib\site-packages\alembic\runtime\migration.py", line 616, in run_migrations
+    step.migration_fn(**kw)
+  File "C:\Users\user\AppData\Local\Temp\lab7-project-_pz1zsos\alembic\versions\0002_add_course_level.py", line 6, in upgrade
+    op.add_column("courses", sa.Column("level", sa.Text(), nullable=False))
+  File "<string>", line 8, in add_column
+  File "<string>", line 3, in add_column
+  File "C:\Users\user\.codex\.chatgpt-projects\g-p-6ac51903b4f881919915ad28893d152c\lab7-venv\Lib\site-packages\alembic\operations\ops.py", line 2236, in add_column
+    return operations.invoke(op)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\user\.codex\.chatgpt-projects\g-p-6ac51903b4f881919915ad28893d152c\lab7-venv\Lib\site-packages\alembic\operations\base.py", line 448, in invoke
+    return fn(self, operation)
+           ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\user\.codex\.chatgpt-projects\g-p-6ac51903b4f881919915ad28893d152c\lab7-venv\Lib\site-packages\alembic\operations\toimpl.py", line 181, in add_column
+    operations.impl.add_column(
+  File "C:\Users\user\.codex\.chatgpt-projects\g-p-6ac51903b4f881919915ad28893d152c\lab7-venv\Lib\site-packages\alembic\ddl\impl.py", line 384, in add_column
+    self._exec(
+  File "C:\Users\user\.codex\.chatgpt-projects\g-p-6ac51903b4f881919915ad28893d152c\lab7-venv\Lib\site-packages\alembic\ddl\impl.py", line 252, in _exec
+    return conn.execute(construct, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\user\.codex\.chatgpt-projects\g-p-6ac51903b4f881919915ad28893d152c\lab7-venv\Lib\site-packages\sqlalchemy\engine\base.py", line 1494, in execute
+    return meth(
+           ^^^^^
+  File "C:\Users\user\.codex\.chatgpt-projects\g-p-6ac51903b4f881919915ad28893d152c\lab7-venv\Lib\site-packages\sqlalchemy\sql\ddl.py", line 203, in _execute_on_connection
+    return connection._execute_ddl(
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\user\.codex\.chatgpt-projects\g-p-6ac51903b4f881919915ad28893d152c\lab7-venv\Lib\site-packages\sqlalchemy\engine\base.py", line 1603, in _execute_ddl
+    ret = self._execute_context(
+          ^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\user\.codex\.chatgpt-projects\g-p-6ac51903b4f881919915ad28893d152c\lab7-venv\Lib\site-packages\sqlalchemy\engine\base.py", line 1868, in _execute_context
+    return self._exec_single_context(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\user\.codex\.chatgpt-projects\g-p-6ac51903b4f881919915ad28893d152c\lab7-venv\Lib\site-packages\sqlalchemy\engine\base.py", line 1996, in _exec_single_context
+    self._handle_dbapi_exception(
+  File "C:\Users\user\.codex\.chatgpt-projects\g-p-6ac51903b4f881919915ad28893d152c\lab7-venv\Lib\site-packages\sqlalchemy\engine\base.py", line 2351, in _handle_dbapi_exception
+    raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
+  File "C:\Users\user\.codex\.chatgpt-projects\g-p-6ac51903b4f881919915ad28893d152c\lab7-venv\Lib\site-packages\sqlalchemy\engine\base.py", line 1977, in _exec_single_context
+    self.dialect.do_execute(
+  File "C:\Users\user\.codex\.chatgpt-projects\g-p-6ac51903b4f881919915ad28893d152c\lab7-venv\Lib\site-packages\sqlalchemy\engine\default.py", line 1192, in do_execute
+    cursor.execute(statement, parameters)
+  File "C:\Users\user\.codex\.chatgpt-projects\g-p-6ac51903b4f881919915ad28893d152c\lab7-venv\Lib\site-packages\psycopg\cursor.py", line 117, in execute
+    raise ex.with_traceback(None)
+sqlalchemy.exc.IntegrityError: (psycopg.errors.NotNullViolation) column "level" of relation "courses" contains null values
+[SQL: ALTER TABLE courses ADD COLUMN level TEXT NOT NULL]
+(Background on this error at: https://sqlalche.me/e/21/gkpj)
+
+$ python -m alembic upgrade 0001:0002 --sql
+BEGIN;
+
+-- Running upgrade 0001 -> 0002
+
+ALTER TABLE courses ADD COLUMN level TEXT;
+
+UPDATE courses SET level = CASE WHEN is_elective THEN 'beginner' ELSE 'intermediate' END;
+
+ALTER TABLE courses ALTER COLUMN level SET NOT NULL;
+
+UPDATE alembic_version SET version_num='0002' WHERE alembic_version.version_num = '0001';
+
+COMMIT;
+
+INFO  [alembic.runtime.migration] Context impl PostgresqlImpl.
+INFO  [alembic.runtime.migration] Generating static SQL
+INFO  [alembic.runtime.migration] Will assume transactional DDL.
+INFO  [alembic.runtime.migration] Running upgrade 0001 -> 0002, Add a required course level without losing existing rows.
+
+$ python -m alembic upgrade head
+INFO  [alembic.runtime.migration] Context impl PostgresqlImpl.
+INFO  [alembic.runtime.migration] Will assume transactional DDL.
+INFO  [alembic.runtime.migration] Running upgrade 0001 -> 0002, Add a required course level without losing existing rows.
+
+$ python -m alembic check
+No new upgrade operations detected.
+INFO  [alembic.runtime.migration] Context impl PostgresqlImpl.
+INFO  [alembic.runtime.migration] Will assume transactional DDL.
+INFO  [alembic.runtime.plugins] setting up autogenerate plugin alembic.autogenerate.schemas
+INFO  [alembic.runtime.plugins] setting up autogenerate plugin alembic.autogenerate.tables
+INFO  [alembic.runtime.plugins] setting up autogenerate plugin alembic.autogenerate.types
+INFO  [alembic.runtime.plugins] setting up autogenerate plugin alembic.autogenerate.constraints
+INFO  [alembic.runtime.plugins] setting up autogenerate plugin alembic.autogenerate.defaults
+INFO  [alembic.runtime.plugins] setting up autogenerate plugin alembic.autogenerate.comments
+
+EXPERIMENT 2: remove Pydantic min_length
+$ python -c from fastapi.testclient import TestClient
+from main import app
+with TestClient(app, raise_server_exceptions=False) as c:
+ r=c.post("/students",json={"name":"N","email":"n@example.com"}); print(r.status_code,r.text); assert r.status_code==500
+
+500 Internal Server Error
+
+$ python -c from sqlalchemy.exc import IntegrityError
+from db import SessionLocal
+from models import Student
+with SessionLocal() as s:
+ s.add(Student(name="N",email="n@example.com"))
+ try: s.commit()
+ except IntegrityError as e: print(type(e.orig).__name__,e.orig.diag.constraint_name); s.rollback()
+
+CheckViolation students_name_check
+
+EXPERIMENT 3: typo in the constraint response map
+$ python -c from fastapi.testclient import TestClient
+from main import app
+with TestClient(app, raise_server_exceptions=False) as c:
+ r=c.post("/students",json={"name":"Aigerim Two","email":"aigerim@example.com"}); print(r.status_code,r.text); assert r.status_code==500
+
+500 Internal Server Error
+
+EXPERIMENT 4: nullable and type drift
+$ python -m alembic check
+FAILED: New upgrade operations detected: [[('modify_nullable', None, 'courses', 'title', {'existing_type': TEXT(), 'existing_server_default': False, 'existing_comment': None}, True, False)]]
+INFO  [alembic.runtime.migration] Context impl PostgresqlImpl.
+INFO  [alembic.runtime.migration] Will assume transactional DDL.
+INFO  [alembic.runtime.plugins] setting up autogenerate plugin alembic.autogenerate.schemas
+INFO  [alembic.runtime.plugins] setting up autogenerate plugin alembic.autogenerate.tables
+INFO  [alembic.runtime.plugins] setting up autogenerate plugin alembic.autogenerate.types
+INFO  [alembic.runtime.plugins] setting up autogenerate plugin alembic.autogenerate.constraints
+INFO  [alembic.runtime.plugins] setting up autogenerate plugin alembic.autogenerate.defaults
+INFO  [alembic.runtime.plugins] setting up autogenerate plugin alembic.autogenerate.comments
+INFO  [alembic.autogenerate.compare.constraints] Detected NOT NULL on column 'courses.title'
+ERROR [alembic.util.messaging] New upgrade operations detected: [[('modify_nullable', None, 'courses', 'title', {'existing_type': TEXT(), 'existing_server_default': False, 'existing_comment': None}, True, False)]]
+
+$ python -m alembic check
+FAILED: New upgrade operations detected: [[('modify_type', None, 'courses', 'title', {'existing_nullable': False, 'existing_server_default': False, 'existing_comment': None}, VARCHAR(length=100), Text())]]
+INFO  [alembic.runtime.migration] Context impl PostgresqlImpl.
+INFO  [alembic.runtime.migration] Will assume transactional DDL.
+INFO  [alembic.runtime.plugins] setting up autogenerate plugin alembic.autogenerate.schemas
+INFO  [alembic.runtime.plugins] setting up autogenerate plugin alembic.autogenerate.tables
+INFO  [alembic.runtime.plugins] setting up autogenerate plugin alembic.autogenerate.types
+INFO  [alembic.runtime.plugins] setting up autogenerate plugin alembic.autogenerate.constraints
+INFO  [alembic.runtime.plugins] setting up autogenerate plugin alembic.autogenerate.defaults
+INFO  [alembic.runtime.plugins] setting up autogenerate plugin alembic.autogenerate.comments
+INFO  [alembic.autogenerate.compare.types] Detected type change from VARCHAR(length=100) to Text() on 'courses.title'
+ERROR [alembic.util.messaging] New upgrade operations detected: [[('modify_type', None, 'courses', 'title', {'existing_nullable': False, 'existing_server_default': False, 'existing_comment': None}, VARCHAR(length=100), Text())]]
+
+$ python -m alembic check
+No new upgrade operations detected.
+INFO  [alembic.runtime.migration] Context impl PostgresqlImpl.
+INFO  [alembic.runtime.migration] Will assume transactional DDL.
+INFO  [alembic.runtime.plugins] setting up autogenerate plugin alembic.autogenerate.schemas
+INFO  [alembic.runtime.plugins] setting up autogenerate plugin alembic.autogenerate.tables
+INFO  [alembic.runtime.plugins] setting up autogenerate plugin alembic.autogenerate.types
+INFO  [alembic.runtime.plugins] setting up autogenerate plugin alembic.autogenerate.constraints
+INFO  [alembic.runtime.plugins] setting up autogenerate plugin alembic.autogenerate.defaults
+INFO  [alembic.runtime.plugins] setting up autogenerate plugin alembic.autogenerate.comments
+
+EXPERIMENT 6: forget import models; review only, DO NOT APPLY
+$ python -m alembic revision --autogenerate -m
+Generating C:\Users\user\AppData\Local\Temp\lab7-project-_pz1zsos\alembic\versions\0003_oops.py ...  done
+INFO  [alembic.runtime.migration] Context impl PostgresqlImpl.
+INFO  [alembic.runtime.migration] Will assume transactional DDL.
+INFO  [alembic.runtime.plugins] setting up autogenerate plugin alembic.autogenerate.schemas
+INFO  [alembic.runtime.plugins] setting up autogenerate plugin alembic.autogenerate.tables
+INFO  [alembic.runtime.plugins] setting up autogenerate plugin alembic.autogenerate.types
+INFO  [alembic.runtime.plugins] setting up autogenerate plugin alembic.autogenerate.constraints
+INFO  [alembic.runtime.plugins] setting up autogenerate plugin alembic.autogenerate.defaults
+INFO  [alembic.runtime.plugins] setting up autogenerate plugin alembic.autogenerate.comments
+INFO  [alembic.autogenerate.compare.tables] Detected removed table 'students'
+INFO  [alembic.autogenerate.compare.tables] Detected removed table 'courses'
+INFO  [alembic.autogenerate.compare.constraints] Detected removed index 'enrollments_student_id_idx' on 'enrollments'
+INFO  [alembic.autogenerate.compare.tables] Detected removed table 'enrollments'
+
+"""oops
+
+Revision ID: 0003
+Revises: 0002
+Create Date: 2026-11-05 17:43:37.969576
+"""
+from typing import Sequence, Union
+from alembic import op
+import sqlalchemy as sa
+from sqlalchemy.dialects import postgresql
+
+revision: str = '0003'
+down_revision: Union[str, Sequence[str], None] = '0002'
+branch_labels: Union[str, Sequence[str], None] = None
+depends_on: Union[str, Sequence[str], None] = None
+
+
+def upgrade() -> None:
+    # ### commands auto generated by Alembic - please adjust! ###
+    op.drop_table('students')
+    op.drop_table('courses')
+    op.drop_index(op.f('enrollments_student_id_idx'), table_name='enrollments')
+    op.drop_table('enrollments')
+    # ### end Alembic commands ###
+
+
+def downgrade() -> None:
+    # ### commands auto generated by Alembic - please adjust! ###
+    op.create_table('enrollments',
+    sa.Column('id', sa.BIGINT(), sa.Identity(always=True, start=1, increment=1, minvalue=1, maxvalue=9223372036854775807, cycle=False, cache=1), autoincrement=True, nullable=False),
+    sa.Column('course_id', sa.TEXT(), autoincrement=False, nullable=False),
+    sa.Column('student_id', sa.BIGINT(), autoincrement=False, nullable=False),
+    sa.Column('enrolled_at', postgresql.TIMESTAMP(timezone=True), server_default=sa.text('now()'), autoincrement=False, nullable=False),
+    sa.ForeignKeyConstraint(['course_id'], ['courses.id'], name=op.f('enrollments_course_id_fkey'), ondelete='RESTRICT'),
+    sa.ForeignKeyConstraint(['student_id'], ['students.id'], name=op.f('enrollments_student_id_fkey'), ondelete='CASCADE'),
+    sa.PrimaryKeyConstraint('id', name=op.f('enrollments_pkey')),
+    sa.UniqueConstraint('course_id', 'student_id', name=op.f('enrollments_course_id_student_id_key'), postgresql_include=[], postgresql_nulls_not_distinct=False)
+    )
+    op.create_index(op.f('enrollments_student_id_idx'), 'enrollments', ['student_id'], unique=False)
+    op.create_table('courses',
+    sa.Column('id', sa.TEXT(), autoincrement=False, nullable=False),
+    sa.Column('title', sa.TEXT(), autoincrement=False, nullable=False),
+    sa.Column('description', sa.TEXT(), autoincrement=False, nullable=False),
+    sa.Column('credits', sa.INTEGER(), autoincrement=False, nullable=False),
+    sa.Column('is_elective', sa.BOOLEAN(), server_default=sa.text('false'), autoincrement=False, nullable=False),
+    sa.Column('likes', sa.INTEGER(), server_default=sa.text('0'), autoincrement=False, nullable=False),
+    sa.Column('level', sa.TEXT(), autoincrement=False, nullable=False),
+    sa.CheckConstraint('credits > 0', name=op.f('courses_credits_check')),
+    sa.CheckConstraint('likes >= 0', name=op.f('courses_likes_check')),
+    sa.PrimaryKeyConstraint('id', name=op.f('courses_pkey'))
+    )
+    op.create_table('students',
+    sa.Column('id', sa.BIGINT(), sa.Identity(always=True, start=1, increment=1, minvalue=1, maxvalue=9223372036854775807, cycle=False, cache=1), autoincrement=True, nullable=False),
+    sa.Column('name', sa.TEXT(), autoincrement=False, nullable=False),
+    sa.Column('email', sa.TEXT(), autoincrement=False, nullable=False),
+    sa.CheckConstraint('char_length(name) >= 2', name=op.f('students_name_check')),
+    sa.PrimaryKeyConstraint('id', name=op.f('students_pkey')),
+    sa.UniqueConstraint('email', name=op.f('students_email_key'), postgresql_include=[], postgresql_nulls_not_distinct=False)
+    )
+    # ### end Alembic commands ###
+
+EXPERIMENT 7: add phone without a migration
+$ python -m alembic check
+FAILED: New upgrade operations detected: [('add_column', None, 'students', Column('phone', Text(), table=<students>))]
+INFO  [alembic.runtime.migration] Context impl PostgresqlImpl.
+INFO  [alembic.runtime.migration] Will assume transactional DDL.
+INFO  [alembic.runtime.plugins] setting up autogenerate plugin alembic.autogenerate.schemas
+INFO  [alembic.runtime.plugins] setting up autogenerate plugin alembic.autogenerate.tables
+INFO  [alembic.runtime.plugins] setting up autogenerate plugin alembic.autogenerate.types
+INFO  [alembic.runtime.plugins] setting up autogenerate plugin alembic.autogenerate.constraints
+INFO  [alembic.runtime.plugins] setting up autogenerate plugin alembic.autogenerate.defaults
+INFO  [alembic.runtime.plugins] setting up autogenerate plugin alembic.autogenerate.comments
+INFO  [alembic.autogenerate.compare.tables] Detected added column 'students.phone'
+ERROR [alembic.util.messaging] New upgrade operations detected: [('add_column', None, 'students', Column('phone', Text(), table=<students>))]
+
+$ python -m alembic check
+No new upgrade operations detected.
+INFO  [alembic.runtime.migration] Context impl PostgresqlImpl.
+INFO  [alembic.runtime.migration] Will assume transactional DDL.
+INFO  [alembic.runtime.plugins] setting up autogenerate plugin alembic.autogenerate.schemas
+INFO  [alembic.runtime.plugins] setting up autogenerate plugin alembic.autogenerate.tables
+INFO  [alembic.runtime.plugins] setting up autogenerate plugin alembic.autogenerate.types
+INFO  [alembic.runtime.plugins] setting up autogenerate plugin alembic.autogenerate.constraints
+INFO  [alembic.runtime.plugins] setting up autogenerate plugin alembic.autogenerate.defaults
+INFO  [alembic.runtime.plugins] setting up autogenerate plugin alembic.autogenerate.comments
+
+EXPERIMENT 8: two heads and a merge
+$ python -m alembic revision -m add student phone
+Generating C:\Users\user\AppData\Local\Temp\lab7-project-_pz1zsos\alembic\versions\0003_add_student_phone.py ...  done
+
+$ python -m alembic revision -m add course language
+Generating C:\Users\user\AppData\Local\Temp\lab7-project-_pz1zsos\alembic\versions\0004_add_course_language.py ...  done
+
+$ python -m alembic heads
+0003 (head)
+0004 (head)
+
+$ python -m alembic upgrade head
+FAILED: Multiple head revisions are present for given argument 'head'; please specify a specific target revision, '<branchname>@head' to narrow to a specific head, or 'heads' for all heads
+INFO  [alembic.runtime.migration] Context impl PostgresqlImpl.
+INFO  [alembic.runtime.migration] Will assume transactional DDL.
+ERROR [alembic.util.messaging] Multiple head revisions are present for given argument 'head'; please specify a specific target revision, '<branchname>@head' to narrow to a specific head, or 'heads' for all heads
+
+$ python -m alembic merge heads -m
+Generating C:\Users\user\AppData\Local\Temp\lab7-project-_pz1zsos\alembic\versions\0005_merge_phone_and_language.py ...  done
+
+$ python -m alembic heads
+0005 (head)
+
+$ python -m alembic history
+0003, 0004 -> 0005 (head) (mergepoint), merge phone and language
+0002 -> 0003, add student phone
+0002 -> 0004, add course language
+0001 -> 0002 (branchpoint), Add a required course level without losing existing rows.
+<base> -> 0001, create catalog tables
+
+$ python -m alembic heads
+0002 (head)
+
+VERIFY: upgrade / downgrade / upgrade with existing records
+$ python -m alembic downgrade -1
+INFO  [alembic.runtime.migration] Context impl PostgresqlImpl.
+INFO  [alembic.runtime.migration] Will assume transactional DDL.
+INFO  [alembic.runtime.migration] Running downgrade 0002 -> 0001, Add a required course level without losing existing rows.
+
+$ python -m alembic upgrade head
+INFO  [alembic.runtime.migration] Context impl PostgresqlImpl.
+INFO  [alembic.runtime.migration] Will assume transactional DDL.
+INFO  [alembic.runtime.migration] Running upgrade 0001 -> 0002, Add a required course level without losing existing rows.
+
+$ python -m alembic check
+No new upgrade operations detected.
+INFO  [alembic.runtime.migration] Context impl PostgresqlImpl.
+INFO  [alembic.runtime.migration] Will assume transactional DDL.
+INFO  [alembic.runtime.plugins] setting up autogenerate plugin alembic.autogenerate.schemas
+INFO  [alembic.runtime.plugins] setting up autogenerate plugin alembic.autogenerate.tables
+INFO  [alembic.runtime.plugins] setting up autogenerate plugin alembic.autogenerate.types
+INFO  [alembic.runtime.plugins] setting up autogenerate plugin alembic.autogenerate.constraints
+INFO  [alembic.runtime.plugins] setting up autogenerate plugin alembic.autogenerate.defaults
+INFO  [alembic.runtime.plugins] setting up autogenerate plugin alembic.autogenerate.comments
+
+VERIFY: clean start from an empty schema
+$ python -m alembic downgrade base
+INFO  [alembic.runtime.migration] Context impl PostgresqlImpl.
+INFO  [alembic.runtime.migration] Will assume transactional DDL.
+INFO  [alembic.runtime.migration] Running downgrade 0002 -> 0001, Add a required course level without losing existing rows.
+INFO  [alembic.runtime.migration] Running downgrade 0001 -> , create catalog tables
+
+$ python -m alembic upgrade head
+INFO  [alembic.runtime.migration] Context impl PostgresqlImpl.
+INFO  [alembic.runtime.migration] Will assume transactional DDL.
+INFO  [alembic.runtime.migration] Running upgrade  -> 0001, create catalog tables
+INFO  [alembic.runtime.migration] Running upgrade 0001 -> 0002, Add a required course level without losing existing rows.
+
+$ python -m alembic check
+No new upgrade operations detected.
+INFO  [alembic.runtime.migration] Context impl PostgresqlImpl.
+INFO  [alembic.runtime.migration] Will assume transactional DDL.
+INFO  [alembic.runtime.plugins] setting up autogenerate plugin alembic.autogenerate.schemas
+INFO  [alembic.runtime.plugins] setting up autogenerate plugin alembic.autogenerate.tables
+INFO  [alembic.runtime.plugins] setting up autogenerate plugin alembic.autogenerate.types
+INFO  [alembic.runtime.plugins] setting up autogenerate plugin alembic.autogenerate.constraints
+INFO  [alembic.runtime.plugins] setting up autogenerate plugin alembic.autogenerate.defaults
+INFO  [alembic.runtime.plugins] setting up autogenerate plugin alembic.autogenerate.comments
+
+$ python check_db.py
+connected to lab7_verify_temporary as catalog_app, PostgreSQL 17.4
+
+$ python check_models.py
+courses: 6 rows
+students: 3 rows
+enrollments: 6 rows
+names only in models: none
+names only in database: none
+
+$ python -c 
+from concurrent.futures import ThreadPoolExecutor
+from fastapi.testclient import TestClient
+from main import app
+from try_errors import CASES
+with TestClient(app) as c:
+    for title,path,body,status in CASES:
+        r=c.post(path,json=body)
+        print(title,r.status_code,r.text)
+        assert r.status_code==status
+    assert len(c.get('/courses').json())==6
+    assert len(c.get('/courses?level=beginner').json())==2
+    assert [x['likes'] for x in c.get('/courses?is_elective=false&page_size=3').json()]==[24,21,19]
+    assert c.get('/courses?is_elective=false&page_size=3&page=2').json()[0]['id']=='databases-postgresql'
+    assert c.get('/courses?sort=title').json()==sorted(c.get('/courses').json(),key=lambda x:x['title'])
+    assert c.get('/courses?page=0').status_code==422
+    assert c.get('/courses?page_size=101').status_code==422
+    assert c.get('/courses/unknown').status_code==404
+    assert c.post('/courses/unknown/like').status_code==404
+    details=c.get('/enrollments').json()
+    assert len(details)==6 and all('studentName' in e and 'courseTitle' in e for e in details)
+    stats={x['courseId']:x['enrolled'] for x in c.get('/stats/courses').json()}
+    assert stats=={'ai-integration':3,'modern-frontend':2,'backend-fastapi':1,'api-design':0,'databases-postgresql':0,'web-security':0}
+    r=c.post('/students',json={'name':'Nurlan Abenov','email':'nurlan@example.com'})
+    assert r.status_code==201,r.text
+    student=r.json()['id']
+    r=c.post('/enrollments',json={'courseId':'web-security','studentId':student})
+    assert r.status_code==201 and r.json()['enrolledAt']
+    assert c.post('/enrollments',json={'courseId':'web-security','studentName':'Old form'}).status_code==422
+    with ThreadPoolExecutor(max_workers=6) as pool:
+        statuses=list(pool.map(lambda _:c.post('/courses/api-design/like').status_code,range(12)))
+    assert statuses==[200]*12,statuses
+    assert c.get('/courses/api-design').json()['likes']==23
+    cors=c.options('/courses',headers={'Origin':'http://localhost:3000','Access-Control-Request-Method':'GET'})
+    assert cors.headers['access-control-allow-origin']=='http://localhost:3000'
+with TestClient(app) as restarted:
+    assert restarted.get('/courses/api-design').json()['likes']==23
+print('PASS: error cases, filters, pagination, JOIN, zero statistics, create, concurrency, persistence, CORS')
+
+email already taken 409 {"detail":"Student with this email already exists"}
+already enrolled 409 {"detail":"Student is already enrolled in this course"}
+unknown course 404 {"detail":"Course not found"}
+unknown student 404 {"detail":"Student not found"}
+name too short 422 {"detail":[{"type":"string_too_short","loc":["body","name"],"msg":"String should have at least 2 characters","input":"N","ctx":{"min_length":2}}]}
+PASS: error cases, filters, pagination, JOIN, zero statistics, create, concurrency, persistence, CORS
+
+$ python -c from db import SessionLocal
+from models import Course
+with SessionLocal() as s:
+ assert s.get(Course,'api-design').likes==23
+print('PASS: likes persisted in a new Python process')
+PASS: likes persisted in a new Python process
+
+PASS: all eight experiments and all verification checks completed.
