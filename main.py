@@ -53,10 +53,12 @@ def read_root():
 
 @app.get("/courses", response_model=list[CourseOut])
 def list_courses(db: SessionDep, is_elective: bool | None = None,
-                 sort: str = "popular", p: dict = Depends(pagination)):
+                 level: str | None = None, sort: str = "popular", p: dict = Depends(pagination)):
     stmt = select(Course)
     if is_elective is not None:
         stmt = stmt.where(Course.is_elective == is_elective)
+    if level is not None:
+        stmt = stmt.where(Course.level == level)
     if sort == "title":
         stmt = stmt.order_by(Course.title, Course.id)
     else:
