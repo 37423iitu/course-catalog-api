@@ -12,8 +12,6 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
-
-
 def pagination(
     page: int = Query(default=1, ge=1),
     page_size: int = Query(default=20, ge=1, le=100),
